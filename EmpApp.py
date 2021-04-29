@@ -46,7 +46,7 @@ def AddEmp():
 
 
     if emp_image_file.filename == "":
-        return "Please select a file"
+        return "<h1>Please select a file</h1>"
 
     try:
 
@@ -94,22 +94,25 @@ def FetchEmp():
     output = {}
     select_sql = "SELECT empid, fname, lname, pri_skill, location from employee where empid=%s"
     cursor = db_conn.cursor()
-    cursor.execute(select_sql, (emp_id))
-    result = cursor.fetchone()
 
-    output["emp_id"] = result[0]
-    print('EVERYTHING IS FINE TILL HERE')
-    output["first_name"] = result[1]
-    output["last_name"] = result[2]
-    output["primary_skills"] = result[3]
-    output["location"] = result[4]
-    print(output["emp_id"])
+    try:
+        cursor.execute(select_sql, (emp_id))
+        result = cursor.fetchone()
+
+        output["emp_id"] = result[0]
+        print('EVERYTHING IS FINE TILL HERE')
+        output["first_name"] = result[1]
+        output["last_name"] = result[2]
+        output["primary_skills"] = result[3]
+        output["location"] = result[4]
+        print(output["emp_id"])
 
 
 
-    return render_template("GetEmpOutput.html", id=output["emp_id"], fname=output["first_name"],
+        return render_template("GetEmpOutput.html", id=output["emp_id"], fname=output["first_name"],
                            lname=output["last_name"], interest=output["primary_skills"], location=output["location"],image_url="bridge.jpg")
 
-
+    except Exception as e:
+        return render_template('Error.html')
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
