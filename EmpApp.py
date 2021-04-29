@@ -1,8 +1,11 @@
+import io
+
 from flask import Flask, render_template, request
 from pymysql import connections
 import os
 import boto3
 from config import *
+from PIL import Image
 import json
 
 app = Flask(__name__)
@@ -107,10 +110,22 @@ def FetchEmp():
         output["location"] = result[4]
         print(output["emp_id"])
 
+        s3 = boto3.resource('s3')
+
+        def image_from_s3(bucket, key):
+
+            bucket = s3.Bucket(bucket)
+            image = bucket.Object(key)
+            img_data = image.get().get('Body').read()
+
+            return Image.open(io.BytesIO(img_data))
+        image_url = image_from_s3(custombucket, "emp-id-" + str(emp_id) + "_image_file")
+
+
 
 
         return render_template("GetEmpOutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"],image_url="bridge.jpg")
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"],image_url=image_url)
 
     except Exception as e:
         return render_template('Error.html')
