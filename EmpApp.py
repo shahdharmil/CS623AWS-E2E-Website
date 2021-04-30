@@ -37,22 +37,20 @@ def about():
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
+    emp_id = request.form['emp_id']
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    pri_skill = request.form['pri_skill']
+    location = request.form['location']
+    emp_image_file = request.files['emp_image_file']
+
+    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+
+    if emp_image_file.filename == "":
+        return "<h1>Please select a file</h1>"
+
     try:
-        emp_id = request.form['emp_id']
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
-        pri_skill = request.form['pri_skill']
-        location = request.form['location']
-        emp_image_file = request.files['emp_image_file']
-
-        insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
-        cursor = db_conn.cursor()
-
-
-        if emp_image_file.filename == "":
-            return "<h1>Please select a file</h1>"
-
-
 
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
         db_conn.commit()
