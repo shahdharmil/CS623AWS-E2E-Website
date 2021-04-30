@@ -78,7 +78,9 @@ def AddEmp():
 
 
         except Exception as e:
-            return str(e)
+            print(e)
+            return render_template('Error1.html')
+
 
     finally:
         cursor.close()
