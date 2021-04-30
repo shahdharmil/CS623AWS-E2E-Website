@@ -97,6 +97,21 @@ def FetchEmp():
     output = {}
     select_sql = "SELECT empid, fname, lname, pri_skill, location from employee where empid=%s"
     cursor = db_conn.cursor()
+    emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
+    s3 = boto3.resource('s3')
+
+    bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+    s3_location = (bucket_location['LocationConstraint'])
+
+    if s3_location is None:
+        s3_location = ''
+    else:
+        s3_location = '-' + s3_location
+
+    image_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+        s3_location,
+        custombucket,
+        emp_image_file_name_in_s3)
 
     try:
         cursor.execute(select_sql, (emp_id))
@@ -115,7 +130,7 @@ def FetchEmp():
 
 
         return render_template("GetEmpOutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"],image_url="")
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"],image_url=image_url)
 
     except Exception as e:
         print(e)
