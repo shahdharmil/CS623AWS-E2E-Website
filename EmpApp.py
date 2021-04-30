@@ -47,8 +47,7 @@ def AddEmp():
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
-    if emp_image_file.filename == "":
-        return render_template('Error1.html')
+
 
     try:
 
@@ -76,7 +75,6 @@ def AddEmp():
                 emp_image_file_name_in_s3)
 
         except Exception as e:
-            print(e)
             return render_template('Error1.html')
 
     finally:
