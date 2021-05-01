@@ -27,7 +27,7 @@ table = 'employee'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('AddEmp.html')
+    return render_template('AddEmployee.html')
 
 
 @app.route("/about", methods=['GET','POST'])
@@ -81,11 +81,11 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
+    return render_template('EmployeeAdd_Success.html', name=emp_name)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    return render_template("GetEmp.html")
+    return render_template("GetEmployeeInfo.html")
 
 @app.route("/fetchdata", methods=['POST'])
 def FetchEmp():
@@ -126,8 +126,8 @@ def FetchEmp():
 
 
 
-        return render_template("GetEmpOutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"],image_url=image_url)
+        return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
+                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url)
 
     except Exception as e:
         print(e)
