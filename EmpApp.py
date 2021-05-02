@@ -92,7 +92,7 @@ def FetchEmp():
     emp_id = request.form['emp_id']
 
     output = {}
-    select_sql = "SELECT empid, fname, lname, pri_skill, location from employee where empid=%s" 
+    select_sql = "SELECT empid, fname, lname, pri_skill, location from employee where empid=%s"
     cursor = db_conn.cursor()
     emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
     s3 = boto3.resource('s3')
