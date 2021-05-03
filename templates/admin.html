@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin login</title>
+
+    <script>
+        function validate() {
+            const Username =
+                    document.forms["Username"];
+            const password =
+                    document.forms["password"];
+
+            if (Username.value != "admin") {
+                    window.alert("Incorrect credentials");
+                    Username.focus();
+                    return false;
+                }
+            if (password.value != "admin") {
+                    window.alert("Incorrect credentials");
+                    password.focus();
+                    return false;
+                }
+        }
+    </script>
+
+</head>
+<center>
+	<font color="black" size="5" style="font-family: avenir">
+
+		<h1 style="color: DodgerBlue">Admin Login Page</h1>
+
+		<body bgcolor="#90ee90">
+
+			<form action="/getemp"  onsubmit= "validate()"  method="POST">
+
+				<h2 style="color: grey">Enter Username and Password</h2>
+
+		  		Username:<br> <input style="height:25px;font-size:14pt;" type="String" Username=adminusername autofocus size="40" required><br><br>
+
+				Password:<br> <input style="height:25px;font-size:14pt;" type="String" password=adminpassword autofocus size="40" required><br><br>
+
+
+		  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">LOGIN</button><br><br>
+
+
+
+			</form>
+
+		</body>
+	</font>
+</center>
+</html>

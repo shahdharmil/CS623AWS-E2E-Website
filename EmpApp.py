@@ -83,6 +83,10 @@ def AddEmp():
     print("all modification done...")
     return render_template('EmployeeAdd_Success.html', name=emp_name)
 
+@app.route("/admin", methods=['GET', 'POST'])
+def admin():
+   return render_template("admin.html")
+
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
     return render_template("GetEmployeeInfo.html")
