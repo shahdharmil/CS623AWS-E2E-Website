@@ -1,6 +1,9 @@
-# AWS_E2E_Website
+**We use following major commands in our project**
+
+# To check for any new updates on the EC2 instance.
 
 sudo apt-get update
+
 # For Sql-client
 sudo apt-get install mysql-client
 
