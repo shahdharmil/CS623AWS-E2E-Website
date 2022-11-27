@@ -6,5 +6,4 @@ custompass = "narsingh100"
 customdb = "database-1"
 custombucket = "addattendence"
 customregion = "us-east-2"
-adminusername = "admin"
-adminpassword= os.environ.get('adminpassword') 
+
