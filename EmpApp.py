@@ -14,8 +14,8 @@ bucket = custombucket
 region = customregion
 
 db_conn = connections.Connection(
-    host=customhost,
-    port=5001,
+    host=localhost,
+    port=3306,
     user=customuser,
     password=custompass,
     db=customdb
