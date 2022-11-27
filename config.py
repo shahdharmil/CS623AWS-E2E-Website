@@ -1,10 +1,10 @@
 import os
 
-customhost = os.environ.get('host') or "employee.cprja5yjwh3o.us-east-1.rds.amazonaws.com"
-customuser = os.environ.get('databaseuser') or "admin"
-custompass = os.environ.get('databaseuserpassword')
-customdb = os.environ.get('db') or "employee"
-custombucket = os.environ.get('bucketname') or "addemployee07"
-customregion = os.environ.get('region') or "us-east-1"
-adminusername= os.environ.get('adminpassword') or "admin"
+customhost = "database-1.cerwdqhdu9jn.us-east-2.rds.amazonaws.com"
+customuser = "admin"
+custompass = "narsingh100"
+customdb = "databse-1"
+custombucket = "addattendence"
+customregion = "us-east-2"
+adminusername = "admin"
 adminpassword= os.environ.get('adminpassword') 
