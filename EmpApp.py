@@ -23,7 +23,6 @@ db_conn = connections.Connection(
 output = {}
 table = 'employee'
 
-
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('AddEmployee.html')
@@ -32,7 +31,6 @@ def home():
 @app.route("/about", methods=['GET','POST'])
 def about():
     return render_template('about.html')
-
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
@@ -45,8 +43,6 @@ def AddEmp():
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
-
-
 
     try:
 
@@ -124,10 +120,6 @@ def FetchEmp():
         output["primary_skills"] = result[3]
         output["location"] = result[4]
         print(output["emp_id"])
-
-
-
-
 
         return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
                                lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url)
