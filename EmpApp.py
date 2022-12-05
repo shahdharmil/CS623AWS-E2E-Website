@@ -40,7 +40,7 @@ def about():
 def AddEmployee():
     return render_template('AddEmployee.html')
 
-//add emp -divyam
+
 @app.route("/Addemp", methods=['POST'])
 def Addemp():
     emp_id = request.form['emp_id']
