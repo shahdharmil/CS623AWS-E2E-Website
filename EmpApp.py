@@ -36,8 +36,13 @@ def std():
 def about():
     return render_template('about.html')
 
-@app.route("/AddEmployee", methods=['POST'])
+@app.route("/AddEmployee", methods=['GET','POST'])
 def AddEmployee():
+    return render_template('AddEmployee.html')
+
+//add emp -divyam
+@app.route("/Addemp", methods=['POST'])
+def Addemp():
     emp_id = request.form['emp_id']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
