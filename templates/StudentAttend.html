@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Employee Information</title>
+</head>
+<center>
+	<font color="black" size="4" style="font-family: avenir">
+
+		<h1 style="color: black">Student Registration</h1>
+
+		<body bgcolor="lightblue">
+            <h3 style="color: black">Fill the form below to register</h3>
+
+		     <form action="/addemp" autocomplete="on" method = "POST" enctype="multipart/form-data">
+
+
+		  		Student ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="emp_id" autofocus size="40" required><br><br>
+
+		  		First Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="first_name" required><br><br>
+
+		  		Last Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="last_name" required><br><br>
+
+		  		Division<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="pri_skill" required><br><br>
+
+		  		Image: <input type=file name="emp_image_file" style="height:25px;font-size:14pt;color:grey;" required> <br><br>
+
+		  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Submit</button>
+
+			</form>
+		</body>
+
+	</font>
+</center>
+</html>
