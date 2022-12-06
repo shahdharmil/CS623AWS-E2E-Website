@@ -58,7 +58,7 @@ def Addemp():
 
     try:
 
-        cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
+        cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill))
         db_conn.commit()
         emp_name = "" + first_name + " " + last_name
         # Uplaod image file in S3 #
@@ -103,7 +103,7 @@ def FetchEmp():
     emp_id = request.form['emp_id']
 
     output = {}
-    select_sql = "SELECT empid, fname, lname, pri_skill, location from employee where empid=%s"
+    select_sql = "SELECT empid, fname, lname, pri_skill,from employee where empid=%s"
     cursor = db_conn.cursor()
     emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
     s3 = boto3.resource('s3')
@@ -134,7 +134,7 @@ def FetchEmp():
         print(output["emp_id"])
 
         return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
-                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url)
+                               lname=output["last_name"], interest=output["primary_skills"], image_url=image_url)
 
     except Exception as e:
         print(e)
