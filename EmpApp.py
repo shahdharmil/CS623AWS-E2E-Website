@@ -130,7 +130,6 @@ def FetchEmp():
         output["first_name"] = result[1]
         output["last_name"] = result[2]
         output["primary_skills"] = result[3]
-        output["location"] = result[4]
         print(output["emp_id"])
 
         return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
