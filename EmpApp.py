@@ -135,7 +135,7 @@ def FetchEmp():
         output["primary_skills"] = result[3]
         output["location"] = result[4]
         print(output["emp_id"])
-       return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
+        return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
                                lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url)
 
     except Exception as e:
