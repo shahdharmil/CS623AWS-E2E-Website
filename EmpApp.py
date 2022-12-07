@@ -129,6 +129,8 @@ def FetchEmp():
             output["primary_skills"] = result[3]
             output["location"] = result[4]
             
+            print('value of result[5]: ',result[5])
+            
             if result[5] is 0 or None:
                 print('In POST if cond')
                 result[5] = 1
