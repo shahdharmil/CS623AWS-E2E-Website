@@ -111,7 +111,7 @@ def FetchEmp():
     
     if request.method == 'POST':
         
-        emp_id = session.get('emp_id', None)
+        emp_id = request.form['emp_id']
         
         print('In POST if')
         select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database from employee where empid=%s" 
