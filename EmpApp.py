@@ -114,6 +114,7 @@ def FetchEmp():
         emp_id = request.form['emp_id']
         
         print('In POST if')
+        output = {}
         select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database from employee where empid=%s" 
         cursor = db_conn.cursor()
         
