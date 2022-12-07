@@ -38,10 +38,10 @@ def StuAttend():
             output["last_name"] = result[2]
             output["primary_skills"] = result[3]
             output["location"] = result[4]
-            output["database_subject"] = result[5]
+            output["subject_database"] = result[5]
             
             return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
-                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url, database_subject = output["subject_database"])
+                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url, subject_database = output["subject_database"])
             
         except Exception as e:
             print(e)
