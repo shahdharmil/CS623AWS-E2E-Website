@@ -129,11 +129,7 @@ def FetchEmp():
             output["primary_skills"] = result[3]
             output["location"] = result[4]
             
-            if result[5] is None:
-                print('In POST NULL check')
-                output["subject_database"] = 0
-                print('output["subject_database"]', output["subject_database"])
-            if result[5] is 0:
+            if result[5] is 0 or None:
                 output["subject_database"] = 1
             else:
                 output["subject_database"] = result[5] + 1
