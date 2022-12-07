@@ -130,6 +130,7 @@ def FetchEmp():
             output["location"] = result[4]
             
             if result[5] is 0 or None:
+                result[5] = 1
                 output["subject_database"] = 1
             else:
                 output["subject_database"] = result[5] + 1
