@@ -130,9 +130,11 @@ def FetchEmp():
             output["location"] = result[4]
             
             if result[5] is 0 or None:
+                print('In POST if cond')
                 result[5] = 1
-                output["subject_database"] = 1
+                output["subject_database"] = result[5]
             else:
+                print('In POST else cond')
                 output["subject_database"] = result[5] + 1
             
             
