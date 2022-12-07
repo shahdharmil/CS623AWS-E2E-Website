@@ -143,7 +143,7 @@ def FetchEmp():
     emp_id = request.form['emp_id']
 
     output = {}
-    select_sql = "SELECT empid, fname, lname, pri_skill, location from employee where empid=%s"
+    select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database from employee where empid=%s"
     cursor = db_conn.cursor()
     emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
     s3 = boto3.resource('s3')
@@ -172,9 +172,10 @@ def FetchEmp():
         output["last_name"] = result[2]
         output["primary_skills"] = result[3]
         output["location"] = result[4]
+        output["subject_database"] = result[5]
         print(output["emp_id"])
         return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
-                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url)
+                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], subject_database=output["subject_database"])
 
     except Exception as e:
         print(e)
