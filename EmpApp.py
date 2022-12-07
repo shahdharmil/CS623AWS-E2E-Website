@@ -47,6 +47,7 @@ def StuAttend():
             print(e)
             return render_template('Error.html')
     else:
+        return;
         
     return render_template('attend_success.html')
 
