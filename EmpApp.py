@@ -96,7 +96,7 @@ def AddEmp():
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
-    return render_template('EmployeeAdd_Success.html', name=emp_name)
+    return render_template('EmployeeAdd_Success.html')
 
 @app.route("/admin", methods=['GET', 'POST'])
 def admin():
