@@ -145,7 +145,7 @@ def FetchEmp():
             update_sql = "UPDATE employee SET subject_database = %s WHERE empid=%s"
             cursor.execute(update_sql, (str(output["subject_database"]), (emp_id)))
             
-            cursor.commit()
+            db_conn.commit()
             
             return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
                                lname=output["last_name"], interest=output["primary_skills"], location=output["location"], subject_database = output["subject_database"])
