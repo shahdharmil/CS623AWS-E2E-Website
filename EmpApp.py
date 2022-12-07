@@ -143,7 +143,7 @@ def FetchEmp():
             print(result[5])
             
             update_sql = "UPDATE employee SET subject_database = %s WHERE empid=%s"
-            cursor.execute(update_sql, str(output["subject_database"]), (emp_id))
+            cursor.execute(update_sql, (str(output["subject_database"]), (emp_id)))
             
             cursor.commit()
             
