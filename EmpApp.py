@@ -23,6 +23,10 @@ db_conn = connections.Connection(
 output = {}
 table = 'employee'
 
+@app.route("/atdsuccess", methods=['GET', 'POST'])
+def StudentAttend():
+    return render_template('attend_success.html')
+
 @app.route("/StudentAttend", methods=['GET', 'POST'])
 def StudentAttend():
     return render_template('StudentAttend.html')
