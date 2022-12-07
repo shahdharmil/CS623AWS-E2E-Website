@@ -29,7 +29,7 @@ def StuAttend():
 
 @app.route("/StudentAttend", methods=['GET', 'POST'])
 def StudentAttend():
-    emp_id = request.form.get['emp_id' , False]
+    return render_template('StudentAttend.html')
     
     print('In POST if')
     output = {}
