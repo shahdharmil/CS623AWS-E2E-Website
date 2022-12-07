@@ -25,12 +25,10 @@ table = 'employee'
 
 @app.route("/atdsuccess", methods=['GET', 'POST'])
 def StuAttend():
-    
     return render_template('attend_success.html')
 
 @app.route("/StudentAttend", methods=['GET', 'POST'])
 def StudentAttend():
-    
     emp_id = request.form['emp_id']
     
     print('In POST if')
@@ -66,7 +64,6 @@ def StudentAttend():
     except Exception as e:
         print(e)
         return render_template('Error.html')
-        
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -139,12 +136,10 @@ def admin():
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    
     return render_template("GetEmployeeInfo.html")
 
 @app.route("/fetchdata", methods=['POST'])
 def FetchEmp():
-    
     emp_id = request.form['emp_id']
 
     output = {}
@@ -184,7 +179,5 @@ def FetchEmp():
     except Exception as e:
         print(e)
         return render_template('Error.html')
-            
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
-    
