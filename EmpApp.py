@@ -26,7 +26,7 @@ table = 'employee'
 @app.route("/atdsuccess", methods=['GET', 'POST'])
 def StuAttend():
     if request.method == 'POST':
-        select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database,  from employee where empid=%s" 
+        select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database from employee where empid=%s" 
         cursor = db_conn.cursor()
         
         try:
