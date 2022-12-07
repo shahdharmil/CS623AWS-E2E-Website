@@ -91,7 +91,6 @@ def AddEmp():
     pri_skill = request.form['pri_skill']
     location = request.form['location']
     subject_database = request.form['subject_database']
-    emp_image_file = request.files['emp_image_file']
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
