@@ -25,45 +25,45 @@ table = 'employee'
 
 @app.route("/atdsuccess", methods=['GET', 'POST'])
 def StuAttend():
-    return render_template('attend_success.html')
+    
+    if request.method == 'POST':
+        print('In POST if')
+        select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database from employee where empid=%s" 
+        cursor = db_conn.cursor()
+        
+        try:
+            print('In POST try')
+            cursor.execute(select_sql, (emp_id))
+            result = cursor.fetchone()
+            
+            output["emp_id"] = result[0]
+            output["first_name"] = result[1]
+            output["last_name"] = result[2]
+            output["primary_skills"] = result[3]
+            output["location"] = result[4]
+            
+            if result[5] == NULL:
+                print('In POST NULL check')
+                output["subject_database"] = 0
+                print('output["subject_database"]', output["subject_database"])
+            else:
+                output["subject_database"] = result[5] + 1
+            
+            
+            print(result[5])
+            
+            return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
+                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url, subject_database = output["subject_database"])
+            
+        except Exception as e:
+            print(e)
+            return render_template('Error.html')
+    else:
+      return render_template('attend_success.html')
 
 @app.route("/StudentAttend", methods=['GET', 'POST'])
 def StudentAttend():
-    emp_id = request.form['emp_id']
-    
-    print('In POST if')
-    output = {}
-    select_sql = "SELECT empid, subject_database from employee where empid=%s" 
-    cursor = db_conn.cursor()
-    
-    try:
-        print('In POST try')
-        cursor.execute(select_sql, (emp_id))
-        result = cursor.fetchone()
-        
-        output["emp_id"] = result[0]
-        
-        if result[1] is 0 or None:
-            print('In POST if cond')
-            result[1] = 1
-            output["subject_database"] = int(result[1])
-        else:
-            print('In POST else cond')
-            output["subject_database"] = int(result[1]) + 1
-        
-        
-        print(result[5])
-        
-        update_sql = "UPDATE employee SET subject_database = %s WHERE empid=%s"
-        cursor.execute(update_sql, (str(output["subject_database"]), (emp_id)))
-        
-        db_conn.commit()
-        
-        return render_template('StudentAttend.html')
-        
-    except Exception as e:
-        print(e)
-        return render_template('Error.html')
+    return render_template('StudentAttend.html')
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -143,7 +143,7 @@ def FetchEmp():
     emp_id = request.form['emp_id']
 
     output = {}
-    select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database from employee where empid=%s"
+    select_sql = "SELECT empid, fname, lname, pri_skill, location from employee where empid=%s"
     cursor = db_conn.cursor()
     emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
     s3 = boto3.resource('s3')
@@ -172,10 +172,9 @@ def FetchEmp():
         output["last_name"] = result[2]
         output["primary_skills"] = result[3]
         output["location"] = result[4]
-        output["subject_database"] = result[5]
         print(output["emp_id"])
         return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
-                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], subject_database=output["subject_database"])
+                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url)
 
     except Exception as e:
         print(e)
