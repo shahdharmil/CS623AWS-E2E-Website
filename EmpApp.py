@@ -129,15 +129,22 @@ def FetchEmp():
             output["primary_skills"] = result[3]
             output["location"] = result[4]
             
-            if result[5] is None or result[5] is 0:
+            if result[5] is None:
                 print('In POST NULL check')
                 output["subject_database"] = 0
                 print('output["subject_database"]', output["subject_database"])
+            if result[5] is 0:
+                output["subject_database"] = 1
             else:
                 output["subject_database"] = result[5] + 1
             
             
             print(result[5])
+            
+            update_sql = "UPDATE employee SET subject_database = %s WHERE empid=%s"
+            cursor.execute(update_sql, (output["subject_database"]), (emp_id))
+            
+            cursor.commit()
             
             return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
                                lname=output["last_name"], interest=output["primary_skills"], location=output["location"], subject_database = output["subject_database"])
