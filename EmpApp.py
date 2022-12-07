@@ -38,7 +38,14 @@ def StuAttend():
             output["last_name"] = result[2]
             output["primary_skills"] = result[3]
             output["location"] = result[4]
-            output["subject_database"] = result[5]
+            if result[5] == NULL:
+                output["subject_database"] = 0
+            else:
+                output["subject_database"] = result[5] + 1
+            
+            print(result[5])
+            
+            
             
             return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
                                lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url, subject_database = output["subject_database"])
