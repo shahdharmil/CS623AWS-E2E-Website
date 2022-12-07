@@ -25,6 +25,17 @@ table = 'employee'
 
 @app.route("/atdsuccess", methods=['GET', 'POST'])
 def StuAttend():
+    if request.method == 'POST':
+         select_sql = "subject_database from employee where empid=%s"
+         cursor = db_conn.cursor()
+        
+        try:
+            cursor.execute(select_sql, (emp_id))
+        
+        except Exception as e:
+            print(e)
+            return render_template('Error.html')
+    
     return render_template('attend_success.html')
 
 @app.route("/StudentAttend", methods=['GET', 'POST'])
