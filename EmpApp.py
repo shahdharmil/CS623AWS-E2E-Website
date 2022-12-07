@@ -26,16 +26,28 @@ table = 'employee'
 @app.route("/atdsuccess", methods=['GET', 'POST'])
 def StuAttend():
     if request.method == 'POST':
-         select_sql = "subject_database from employee where empid=%s"
-         cursor = db_conn.cursor()
+        select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database,  from employee where empid=%s" 
+        cursor = db_conn.cursor()
         
         try:
             cursor.execute(select_sql, (emp_id))
-        
+            result = cursor.fetchone()
+            
+            output["emp_id"] = result[0]
+            output["first_name"] = result[1]
+            output["last_name"] = result[2]
+            output["primary_skills"] = result[3]
+            output["location"] = result[4]
+            output["database_subject"] = result[5]
+            
+            return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
+                               lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url, database_subject = output["database_subject"])
+            
         except Exception as e:
             print(e)
             return render_template('Error.html')
-    
+    else:
+        
     return render_template('attend_success.html')
 
 @app.route("/StudentAttend", methods=['GET', 'POST'])
@@ -141,7 +153,7 @@ def FetchEmp():
     try:
         cursor.execute(select_sql, (emp_id))
         result = cursor.fetchone()
-
+        
 
         output["emp_id"] = result[0]
         print('EVERYTHING IS FINE TILL HERE')
