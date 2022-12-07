@@ -25,11 +25,14 @@ table = 'employee'
 
 @app.route("/atdsuccess", methods=['GET', 'POST'])
 def StuAttend():
+    
     if request.method == 'POST':
+        print('In POST if')
         select_sql = "SELECT empid, fname, lname, pri_skill, location, subject_database from employee where empid=%s" 
         cursor = db_conn.cursor()
         
         try:
+            print('In POST try')
             cursor.execute(select_sql, (emp_id))
             result = cursor.fetchone()
             
@@ -38,14 +41,16 @@ def StuAttend():
             output["last_name"] = result[2]
             output["primary_skills"] = result[3]
             output["location"] = result[4]
+            
             if result[5] == NULL:
+                print('In POST NULL check')
                 output["subject_database"] = 0
+                print('output["subject_database"]', output["subject_database"])
             else:
                 output["subject_database"] = result[5] + 1
             
+            
             print(result[5])
-            
-            
             
             return render_template("EmployeeInfo_Output.html", id=output["emp_id"], fname=output["first_name"],
                                lname=output["last_name"], interest=output["primary_skills"], location=output["location"], image_url=image_url, subject_database = output["subject_database"])
