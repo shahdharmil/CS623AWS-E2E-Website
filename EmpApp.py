@@ -24,7 +24,7 @@ output = {}
 table = 'employee'
 
 @app.route("/atdsuccess", methods=['GET', 'POST'])
-def StudentAttend():
+def StuAttend():
     return render_template('attend_success.html')
 
 @app.route("/StudentAttend", methods=['GET', 'POST'])
