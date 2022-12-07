@@ -140,6 +140,8 @@ def GetEmp():
 
 @app.route("/fetchdata", methods=['POST'])
 def FetchEmp():
+    
+  if request.method == 'POST':
     emp_id = request.form['emp_id']
 
     output = {}
